@@ -1,4 +1,4 @@
-package com.jbqneto.construo.minimarket.domain.product;
+package com.jbqneto.construo.minimarket.domain.model.product;
 
 import java.math.BigDecimal;
 
