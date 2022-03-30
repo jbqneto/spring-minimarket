@@ -28,6 +28,10 @@ public class User {
         this.password = password;
     }
 
+    public User(int id, String name, String email, ERole role) {
+        this(id, name, email, role, null);
+    }
+
     public User(String name, String email, ERole role) {
         this(0, name, email, role, null);
     }

@@ -1,5 +1,6 @@
 package com.jbqneto.construo.minimarket.application.presentation.controller;
 
+import com.jbqneto.construo.minimarket.application.presentation.representation.user.EditUserDTO;
 import com.jbqneto.construo.minimarket.application.presentation.representation.user.GetUserDTO;
 import com.jbqneto.construo.minimarket.application.presentation.representation.user.PostUserDTO;
 import com.jbqneto.construo.minimarket.domain.model.user.User;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,8 +39,8 @@ public class UserController {
         return ResponseEntity.ok(new GetUserDTO(user));
     }
 
-    @PostMapping("")
-    public ResponseEntity<GetUserDTO> addUser(@RequestBody PostUserDTO userDTO) {
+    @PostMapping
+    public ResponseEntity<GetUserDTO> addUser(@Valid @RequestBody PostUserDTO userDTO) {
         var user = new User(
                 userDTO.getName(),
                 userDTO.getEmail(),
@@ -52,4 +54,22 @@ public class UserController {
         return ResponseEntity.ok(new GetUserDTO(user));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<GetUserDTO> editUser(
+            @PathVariable int id,
+            @RequestBody EditUserDTO userDTO) {
+
+        var existing = this.userService.findById(id);
+
+        var user = new User(
+                id,
+                userDTO.getName(),
+                userDTO.getEmail(),
+                userDTO.getRole()
+        );
+
+        this.userService.update(user);
+
+        return ResponseEntity.ok(new GetUserDTO(user));
+    }
 }

@@ -64,7 +64,7 @@ public class UserJDBCDao implements UserDao {
 
     @Override
     public void delete(User user) {
-
+        template.update("DELETE from user where user_id = ?", user.getId());
     }
 
     @Override
