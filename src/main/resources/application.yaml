@@ -1,0 +1,13 @@
+server:
+  port: 8080
+  error:
+    include-stacktrace: always
+
+spring:
+  h2:
+    console: true
+  datasource:
+    generate-unique-name: false
+    driverClassName: "org.h2.Driver"
+    username: "construo"
+    password: "const1234"
