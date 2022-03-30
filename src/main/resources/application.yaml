@@ -4,8 +4,10 @@ server:
     include-stacktrace: always
 
 spring:
-  jackson:
-    default-property-inclusion: "non_null"
-    mvc:
-      pathmatch:
-        matching-strategy: "ant-path-matcher"
+  h2:
+    console: true
+  datasource:
+    generate-unique-name: false
+    driverClassName: "org.h2.Driver"
+    username: "construo"
+    password: "const1234"

@@ -1,5 +1,6 @@
 package com.jbqneto.construo.minimarket.domain.service;
 
+import com.jbqneto.construo.minimarket.domain.exception.ForbiddenException;
 import com.jbqneto.construo.minimarket.domain.exception.ModelNotFoundException;
 import com.jbqneto.construo.minimarket.domain.model.user.User;
 import com.jbqneto.construo.minimarket.domain.port.UserDao;
@@ -33,7 +34,10 @@ public class UserService {
     public void changePassword(int id, String oldPassword, String password) {
         var user = this.findById(id);
 
-        this.userDao.changePassword(user, password);
+        if(!passwordEncoder.matches(oldPassword, user.getPassword()))
+            throw new ForbiddenException();
+
+        this.userDao.changePassword(user, passwordEncoder.encode(password));
     }
 
     public User findById(int id) {

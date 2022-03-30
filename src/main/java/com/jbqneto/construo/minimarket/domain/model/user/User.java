@@ -20,15 +20,16 @@ public class User {
     private final ERole role;
     private String password;
 
-    public User(int id, String name, String email, ERole role) {
+    public User(int id, String name, String email, ERole role, String password) {
         this.name = name;
         this.email = email;
         this.role = role;
         this.id = id;
+        this.password = password;
     }
 
     public User(String name, String email, ERole role) {
-        this(0, name, email, role);
+        this(0, name, email, role, null);
     }
 
 }

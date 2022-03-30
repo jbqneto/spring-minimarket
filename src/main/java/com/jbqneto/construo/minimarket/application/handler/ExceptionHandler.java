@@ -1,5 +1,6 @@
 package com.jbqneto.construo.minimarket.application.handler;
 
+import com.jbqneto.construo.minimarket.domain.exception.ForbiddenException;
 import com.jbqneto.construo.minimarket.domain.exception.ModelNotFoundException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -26,7 +27,7 @@ public class ExceptionHandler extends ResponseEntityExceptionHandler {
                 request);
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(ModelNotFoundException.class)
+    @org.springframework.web.bind.annotation.ExceptionHandler(ForbiddenException.class)
     public ResponseEntity<Object> handleForbidden(final Exception ex, HttpHeaders headers,
                                                                HttpStatus status, WebRequest request) {
 
